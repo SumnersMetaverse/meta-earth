@@ -10,6 +10,19 @@ YELLOW='\033[1;33m'
 BLUE='\033[0;34m'
 NC='\033[0m' # No Color
 
+# Check if running from the repository root
+if [ ! -f "docs/static/openapi.yml" ] || [ ! -d ".git" ]; then
+    echo -e "${RED}Error: This script must be run from the meta-earth repository root directory.${NC}"
+    echo ""
+    echo "Please navigate to the repository first:"
+    echo -e "${YELLOW}  cd /path/to/meta-earth${NC}"
+    echo ""
+    echo "Then run this script:"
+    echo -e "${YELLOW}  ./scripts/verify-gitbook-setup.sh${NC}"
+    echo ""
+    exit 1
+fi
+
 echo -e "${BLUE}╔════════════════════════════════════════════════════╗${NC}"
 echo -e "${BLUE}║  GitBook Setup Verification Script                ║${NC}"
 echo -e "${BLUE}╚════════════════════════════════════════════════════╝${NC}"

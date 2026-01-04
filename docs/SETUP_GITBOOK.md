@@ -2,6 +2,32 @@
 
 This guide will walk you through the complete setup process for GitBook OpenAPI publishing.
 
+## Prerequisites
+
+Before you begin, ensure you have:
+1. Cloned or pulled the latest changes from this repository
+2. Checked out the branch with the GitBook setup (e.g., `copilot/install-gitbook-cli`)
+3. Navigated to the repository directory in your terminal
+
+**Example:**
+```bash
+# Clone the repository (if you haven't already)
+git clone https://github.com/SumnersMetaverse/meta-earth.git
+cd meta-earth
+
+# Or if you already have it cloned, pull the latest changes
+git fetch origin
+git checkout copilot/install-gitbook-cli
+git pull origin copilot/install-gitbook-cli
+
+# Verify you're in the correct directory
+pwd
+# Should show: /path/to/meta-earth (not your home directory)
+
+# Verify the scripts exist
+ls -la scripts/gitbook-quickstart.sh scripts/verify-gitbook-setup.sh
+```
+
 ## Step 1: Generate a GitBook API Token
 
 1. **Visit GitBook Settings**

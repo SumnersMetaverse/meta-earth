@@ -222,6 +222,15 @@ To setup push hooks, run the following command:
 
 The repository includes automated publishing of OpenAPI documentation to GitBook.
 
+**Prerequisites:**
+Before running the scripts, ensure you are in the repository directory:
+```sh
+cd /path/to/meta-earth
+# Verify you're in the correct directory
+pwd
+ls scripts/gitbook-quickstart.sh
+```
+
 **Quick Start:**
 ```sh
 ./scripts/gitbook-quickstart.sh
