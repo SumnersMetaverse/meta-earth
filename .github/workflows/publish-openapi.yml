@@ -1,0 +1,33 @@
+name: Publish OpenAPI to GitBook
+
+on:
+  push:
+    branches:
+      - main
+      - master
+    paths:
+      - 'docs/static/openapi.yml'
+  workflow_dispatch:
+
+jobs:
+  publish-openapi:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '18'
+
+      - name: Install GitBook CLI
+        run: npm install -g @gitbook/cli
+
+      - name: Publish OpenAPI to GitBook
+        env:
+          GITBOOK_TOKEN: ${{ secrets.GITBOOK_TOKEN }}
+        run: |
+          export GITBOOK_TOKEN=${{ secrets.GITBOOK_TOKEN }}
+          gitbook openapi publish --spec sumnersmetaverse-api --organization lybZQFBzK6mpGxc7nYtU docs/static/openapi.yml
