@@ -29,5 +29,4 @@ jobs:
         env:
           GITBOOK_TOKEN: ${{ secrets.GITBOOK_TOKEN }}
         run: |
-          export GITBOOK_TOKEN=${{ secrets.GITBOOK_TOKEN }}
           gitbook openapi publish --spec sumnersmetaverse-api --organization lybZQFBzK6mpGxc7nYtU docs/static/openapi.yml

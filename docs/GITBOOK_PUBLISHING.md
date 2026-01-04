@@ -106,5 +106,5 @@ To update the OpenAPI documentation:
 
 For issues with:
 - **GitBook API**: Check [GitBook Documentation](https://docs.gitbook.com/)
-- **GitBook CLI**: Check [GitBook CLI Documentation](https://github.com/GitbookIO/gitbook-cli)
+- **GitBook CLI**: Check [GitBook CLI Documentation](https://www.npmjs.com/package/@gitbook/cli)
 - **This workflow**: Open an issue in this repository
