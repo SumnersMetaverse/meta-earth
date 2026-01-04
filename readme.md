@@ -217,3 +217,38 @@ To setup push hooks, run the following command:
 ```sh
 ./scripts/setup_push_hooks.sh
 ```
+
+### OpenAPI Documentation Publishing
+
+The repository includes automated publishing of OpenAPI documentation to GitBook.
+
+**Prerequisites:**
+Before running the scripts, ensure you are in the repository directory:
+```sh
+cd /path/to/meta-earth
+# Verify you're in the correct directory
+pwd
+ls scripts/gitbook-quickstart.sh
+```
+
+**Quick Start:**
+```sh
+./scripts/gitbook-quickstart.sh
+```
+
+This interactive script will guide you through the 3 steps:
+1. Generate a GitBook API token
+2. Add the token to GitHub Secrets
+3. Test the setup
+
+**Manual Setup:**
+See [docs/SETUP_GITBOOK.md](docs/SETUP_GITBOOK.md) for detailed step-by-step instructions.
+
+**Verify Setup:**
+```sh
+./scripts/verify-gitbook-setup.sh
+```
+
+**Documentation:**
+- [Setup Guide](docs/SETUP_GITBOOK.md) - Complete setup instructions
+- [Publishing Guide](docs/GITBOOK_PUBLISHING.md) - Usage and troubleshooting
