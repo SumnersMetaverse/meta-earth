@@ -9,9 +9,8 @@ The repository includes automation to publish the OpenAPI specification (`docs/s
 ## Automated Publishing (GitHub Actions)
 
 The repository includes a GitHub Actions workflow that automatically publishes the OpenAPI documentation to GitBook when:
-- Changes are pushed to the `main` or `master` branch
-- The OpenAPI file (`docs/static/openapi.yml`) is modified
-- The workflow is manually triggered
+- Changes to the OpenAPI file (`docs/static/openapi.yml`) are pushed to the `main` or `master` branch
+- The workflow is manually triggered via workflow_dispatch
 
 ### Setup
 
