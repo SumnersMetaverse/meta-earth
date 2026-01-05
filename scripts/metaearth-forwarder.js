@@ -44,8 +44,18 @@ try {
 const signerPrefix = process.env.ME_ADDRESS_PREFIX || 'me';  // Meta Earth bech32 prefix
 
 // Gas configuration
-const gasPrice = Number(process.env.ME_GAS_PRICE || 0.025);  // in umec
+const gasPrice = Number(process.env.ME_GAS_PRICE || 0.025);
 const gasLimit = Number(process.env.ME_GAS_LIMIT || 150000);
+
+// Validate gas configuration
+if (isNaN(gasPrice) || gasPrice <= 0) {
+  console.error('❌ Invalid ME_GAS_PRICE. Must be a positive number.');
+  process.exit(1);
+}
+if (isNaN(gasLimit) || gasLimit <= 0 || !Number.isInteger(gasLimit)) {
+  console.error('❌ Invalid ME_GAS_LIMIT. Must be a positive integer.');
+  process.exit(1);
+}
 
 // Server configuration
 const port = Number(process.env.PORT || 3000);
@@ -137,6 +147,22 @@ app.post('/forward', async (req, res) => {
     return res.status(400).json({ 
       error: 'Missing required fields',
       required: ['amount', 'denom'],
+    });
+  }
+
+  // Validate amount is a positive numeric string
+  const amountNum = Number(amount);
+  if (isNaN(amountNum) || amountNum <= 0 || !Number.isInteger(amountNum)) {
+    return res.status(400).json({ 
+      error: 'Invalid amount. Must be a positive integer string.',
+      provided: amount,
+    });
+  }
+
+  // Validate denom format (basic check)
+  if (typeof denom !== 'string' || denom.length === 0) {
+    return res.status(400).json({ 
+      error: 'Invalid denom. Must be a non-empty string.',
     });
   }
 
