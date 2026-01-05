@@ -124,10 +124,10 @@ app.get('/address', (req, res) => {
 /**
  * Forward tokens to configured destination address
  * POST /forward
- * Body: { amount: "12345", denom: "umec", fromAddress?: "me1...", memo?: "..." }
+ * Body: { amount: "12345", denom: "umec", memo?: "..." }
  */
 app.post('/forward', async (req, res) => {
-  const { amount, denom, fromAddress, memo } = req.body;
+  const { amount, denom, memo } = req.body;
 
   if (!signingClient) {
     return res.status(503).json({ error: 'Signing client not ready' });
@@ -147,11 +147,11 @@ app.post('/forward', async (req, res) => {
       gas: gasLimit.toString(),
     };
 
-    console.log(`Forwarding ${amount}${denom} to ${forwardToAddress}...`);
+    console.log(`Forwarding ${amount}${denom} from ${signerAddress} to ${forwardToAddress}...`);
 
-    // Send tokens
+    // Send tokens from signer address to forward destination
     const result = await signingClient.sendTokens(
-      fromAddress || signerAddress,
+      signerAddress,
       forwardToAddress,
       coins(amount, denom),
       fee,

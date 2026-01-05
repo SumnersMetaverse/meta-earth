@@ -145,7 +145,6 @@ Forward tokens to the configured destination address.
 {
   "amount": "12345",
   "denom": "umec",
-  "fromAddress": "me1..." (optional, defaults to signer address),
   "memo": "Custom memo" (optional)
 }
 ```
