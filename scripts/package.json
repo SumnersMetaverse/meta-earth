@@ -6,7 +6,9 @@
   "main": "metaearth-forwarder.js",
   "scripts": {
     "start": "node metaearth-forwarder.js",
-    "dev": "node --watch metaearth-forwarder.js"
+    "dev": "node --watch metaearth-forwarder.js",
+    "test": "node test-forwarder.js",
+    "test:tx": "ME_RUN_TX_TEST=true node test-forwarder.js"
   },
   "keywords": [
     "cosmjs",
