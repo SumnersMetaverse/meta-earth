@@ -1,0 +1,31 @@
+{
+  "name": "metaearth-forwarder",
+  "version": "1.0.0",
+  "description": "CosmJS Transaction Forwarder for Meta Earth Network",
+  "type": "module",
+  "main": "metaearth-forwarder.js",
+  "scripts": {
+    "start": "node metaearth-forwarder.js",
+    "dev": "node --watch metaearth-forwarder.js",
+    "test": "node test-forwarder.js",
+    "test:tx": "ME_RUN_TX_TEST=true node test-forwarder.js"
+  },
+  "keywords": [
+    "cosmjs",
+    "cosmos",
+    "meta-earth",
+    "blockchain"
+  ],
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "@cosmjs/proto-signing": "^0.32.4",
+    "@cosmjs/stargate": "^0.32.4",
+    "body-parser": "^1.20.3",
+    "dotenv": "^16.3.1",
+    "express": "^4.18.2"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}
