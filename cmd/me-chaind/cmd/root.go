@@ -115,6 +115,40 @@ func initTendermintConfig() *tmcfg.Config {
 	return cfg
 }
 
+// IoTeXConfig defines the IoTeX network configuration
+type IoTeXConfig struct {
+	// ChainID is the IoTeX mainnet chain ID
+	ChainID int64 `mapstructure:"chain-id"`
+	// RPCURLs is a list of RPC endpoints for IoTeX network
+	RPCURLs []string `mapstructure:"rpc-urls"`
+}
+
+// DefaultIoTeXConfig returns the default IoTeX network configuration
+func DefaultIoTeXConfig() IoTeXConfig {
+	return IoTeXConfig{
+		ChainID: 4689,
+		RPCURLs: []string{
+			"https://babel-api.mainnet.iotex.io",
+			"https://rpc.ankr.com/iotex",
+		},
+	}
+}
+
+// IoTeXConfigTemplate defines the TOML configuration template for IoTeX network
+const IoTeXConfigTemplate = `
+###############################################################################
+###                          IoTeX Network Configuration                   ###
+###############################################################################
+
+[iotex]
+
+# ChainID is the IoTeX mainnet chain ID
+chain-id = {{ .IoTeX.ChainID }}
+
+# RPCURLs is a list of RPC endpoints for IoTeX network
+rpc-urls = [{{ range $i, $url := .IoTeX.RPCURLs }}{{ if $i }}, {{ end }}{{ printf "%q" $url }}{{ end }}]
+`
+
 // initAppConfig helps to override default appConfig template and configs.
 // return "", nil if no custom configuration is required for the application.
 func initAppConfig() (string, interface{}) {
@@ -123,7 +157,8 @@ func initAppConfig() (string, interface{}) {
 	type CustomAppConfig struct {
 		serverconfig.Config
 
-		Wasm wasmtypes.WasmConfig `mapstructure:"wasm"`
+		Wasm  wasmtypes.WasmConfig `mapstructure:"wasm"`
+		IoTeX IoTeXConfig          `mapstructure:"iotex"`
 	}
 
 	// Optionally allow the chain developer to overwrite the SDK's default
@@ -147,10 +182,12 @@ func initAppConfig() (string, interface{}) {
 	customAppConfig := CustomAppConfig{
 		Config: *srvCfg,
 		Wasm:   wasmtypes.DefaultWasmConfig(),
+		IoTeX:  DefaultIoTeXConfig(),
 	}
 
 	customAppTemplate := serverconfig.DefaultConfigTemplate +
-		wasmtypes.DefaultConfigTemplate()
+		wasmtypes.DefaultConfigTemplate() +
+		IoTeXConfigTemplate
 
 	return customAppTemplate, customAppConfig
 }
