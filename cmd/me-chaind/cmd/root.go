@@ -146,7 +146,7 @@ const IoTeXConfigTemplate = `
 chain-id = {{ .IoTeX.ChainID }}
 
 # RPCURLs is a list of RPC endpoints for IoTeX network
-rpc-urls = [{{ range .IoTeX.RPCURLs }}{{ printf "%q, " . }}{{ end }}]
+rpc-urls = [{{ range $i, $url := .IoTeX.RPCURLs }}{{ if $i }}, {{ end }}{{ printf "%q" $url }}{{ end }}]
 `
 
 // initAppConfig helps to override default appConfig template and configs.
