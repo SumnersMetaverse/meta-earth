@@ -151,6 +151,16 @@ install: go.sum
 docker-build:
 	@DOCKER_BUILDKIT=1 docker build -t ghcr.io/me-hub/med:1.3.0 -f Dockerfile .
 
+docker-run:
+	@echo "Running ME Hub Docker container..."
+	@docker run --rm -it -p 26656:26656 -p 26657:26657 -p 26660:26660 -p 9090:9090 -p 1317:1317 ghcr.io/me-hub/med:1.3.0
+
+docker-run-debug:
+	@echo "Running ME Hub Docker container in debug mode..."
+	@docker run --rm -it -p 26656:26656 -p 26657:26657 -p 26660:26660 -p 9090:9090 -p 1317:1317 -p 4000:4000 \
+		--cap-add=SYS_PTRACE --security-opt seccomp=unconfined \
+		ghcr.io/me-hub/med:1.3.0 dlv exec /usr/bin/me-chaind --api-version=2 --headless --listen=:4000 --accept-multiclient --log -- start
+
 $(BUILDDIR)/:
 	mkdir -p $(BUILDDIR)/
 
@@ -163,7 +173,7 @@ clean:
     $(BUILDDIR)/ \
     tmp-swagger-gen/
 
-.PHONY: build build-linux distclean clean
+.PHONY: build build-linux docker-build docker-run docker-run-debug distclean clean
 
 ###############################################################################
 ###                                Protobuf                                 ###

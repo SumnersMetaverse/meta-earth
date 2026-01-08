@@ -215,10 +215,10 @@ require (
 )
 
 replace (
-	cosmossdk.io/api => ../cosmos-sdk-0.46.0/api
+	cosmossdk.io/api => github.com/st-chain/da-cosmos-sdk/api v0.0.0-20250512031825-af98b7f94aab
 	github.com/99designs/keyring => github.com/cosmos/keyring v1.2.0
-	github.com/CosmWasm/wasmd => ../wasmd-v0.41.0
-	github.com/cosmos/cosmos-sdk => ../cosmos-sdk-0.46.0
+	github.com/CosmWasm/wasmd => github.com/CosmWasm/wasmd v0.41.0
+	github.com/cosmos/cosmos-sdk => github.com/st-chain/da-cosmos-sdk v0.0.0-20250512031825-af98b7f94aab
 
 	// dgrijalva/jwt-go is deprecated and doesn't receive security updates.
 	// See: https://github.com/cosmos/cosmos-sdk/issues/13134
